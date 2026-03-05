@@ -146,6 +146,28 @@ INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, 
 ('Théophylline 200mg', 10, 'Boîte de 30 comprimés', 8.90, 150, 0, 15, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
 ('Prednisone 20mg', 10, 'Boîte de 20 comprimés', 3.80, 400, 0, 40, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400');
 
+-- Insertion des fournisseurs
+INSERT INTO FOURNISSEUR (ID, NOM, EMAIL) VALUES
+(1, 'PharmaSup',    'badrjaid2005+fournisseur1@gmail.com'),
+(2, 'MédicoLab',   'badrjaid2005+fournisseur2@gmail.com'),
+(3, 'BioSanté',    'badrjaid2005+fournisseur3@gmail.com'),
+(4, 'CardioPharma','badrjaid2005+fournisseur4@gmail.com'),
+(5, 'VitaPharm',   'badrjaid2005+fournisseur5@gmail.com');
+ALTER TABLE FOURNISSEUR ALTER COLUMN ID RESTART WITH 6;
+
+-- Chaque catégorie est couverte par au moins 2 fournisseurs
+INSERT INTO CATEGORIE_FOURNISSEUR (CATEGORIE_CODE, FOURNISSEUR_ID) VALUES
+(1, 1), (1, 2),
+(2, 1), (2, 2),
+(3, 1), (3, 3),
+(4, 2), (4, 4),
+(5, 3), (5, 4),
+(6, 1), (6, 5),
+(7, 3), (7, 5),
+(8, 2), (8, 4),
+(9, 4), (9, 5),
+(10, 3),(10, 5);
+
 -- Insertion des dispensaires
 INSERT INTO DISPENSAIRE (CODE, NOM, CONTACT, FONCTION, ADRESSE, CODE_POSTAL, VILLE, REGION, PAYS, TELEPHONE, FAX) VALUES
 ('DSP01', 'Dispensaire Central Dakar', 'Dr. Amadou Diop', 'Directeur', '15 Avenue Léopold Sédar Senghor', '10200', 'Dakar', 'Dakar', 'Sénégal', '+221-33-821-5555', '+221-33-821-5556'),

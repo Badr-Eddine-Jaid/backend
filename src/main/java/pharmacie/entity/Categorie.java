@@ -1,8 +1,11 @@
 package pharmacie.entity;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -34,5 +37,15 @@ public class Categorie {
 	// pour éviter la boucle infinie si on convertit la catégorie en JSON
 	@JsonIgnoreProperties({"categorie", "lignes"})
 	private List<Medicament> medicaments = new LinkedList<>();
+
+	@ToString.Exclude
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(
+		name = "categorie_fournisseur",
+		joinColumns = @JoinColumn(name = "categorie_code"),
+		inverseJoinColumns = @JoinColumn(name = "fournisseur_id")
+	)
+	private Set<Fournisseur> fournisseurs = new HashSet<>();
 
 }

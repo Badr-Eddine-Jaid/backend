@@ -1,2 +1,8 @@
 [phases.setup]
-nixPkgs = ["jdk21"]
+nixPkgs = ["jdk21_headless", "maven"]
+
+[phases.build]
+cmds = ["mvn -DskipTests clean install -Pproduction"]
+
+[start]
+cmd = "java -jar target/*.jar"

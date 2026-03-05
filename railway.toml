@@ -2,4 +2,4 @@
 buildCommand = "mvn -DskipTests clean install -Pproduction"
 
 [deploy]
-startCommand = "java -jar target/*.jar"
+startCommand = "java -jar target/*.jar --spring.profiles.active=deploy"
